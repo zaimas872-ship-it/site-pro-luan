@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para você</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(circle at center, #292929 0%, #0b0b0b 45%, #000 100%);
+
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+/* PARTÍCULAS */
+
+.particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+    background: white;
+
+    box-shadow:
+        0 0 6px white,
+        0 0 12px white;
+
+    animation: flutuar linear infinite;
+}
+
+@keyframes flutuar {
+    from {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-20vh);
+        opacity: 0;
+    }
+}
+
+/* CARTA */
+
+.card {
+    position: relative;
+    z-index: 2;
+
+    width: min(90%, 650px);
+
+    padding: 45px 30px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background: rgba(12, 12, 12, 0.9);
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    box-shadow:
+        0 0 20px rgba(255,255,255,0.08),
+        0 0 70px rgba(255,255,255,0.06);
+
+    animation: entrada 1.3s ease;
+}
+
+@keyframes entrada {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* TITULO */
+
+.titulo {
+    font-size: 38px;
+
+    margin-bottom: 35px;
+
+    color: white;
+
+    text-shadow:
+        0 0 5px white,
+        0 0 15px white,
+        0 0 30px rgba(255,255,255,0.7);
+
+    animation: brilho 2s infinite alternate;
+}
+
+@keyframes brilho {
+    from {
+        text-shadow:
+            0 0 5px white,
+            0 0 15px white;
+    }
+
+    to {
+        text-shadow:
+            0 0 10px white,
+            0 0 25px white,
+            0 0 45px rgba(255,255,255,0.8);
+    }
+}
+
+/* MENSAGEM */
+
+#mensagem {
+    min-height: 360px;
+
+    font-size: 21px;
+
+    line-height: 1.9;
+
+    white-space: pre-line;
+
+    color: #f5f5f5;
+
+    text-shadow:
+        0 0 5px rgba(255,255,255,0.5),
+        0 0 12px rgba(255,255,255,0.15);
+}
+
+/* FINAL */
+
+.final {
+    margin-top: 30px;
+
+    opacity: 0;
+
+    color: white;
+
+    font-size: 21px;
+
+    line-height: 1.8;
+
+    text-shadow:
+        0 0 5px white,
+        0 0 15px white,
+        0 0 30px rgba(255,255,255,0.8);
+
+    animation:
+        aparecer 2s ease forwards,
+        destaque 2s ease-in-out infinite alternate;
+
+    animation-delay: 8s, 10s;
+}
+
+.final strong {
+    font-size: 25px;
+
+    text-shadow:
+        0 0 5px white,
+        0 0 15px white,
+        0 0 30px white,
+        0 0 50px rgba(255,255,255,0.7);
+}
+
+@keyframes aparecer {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes destaque {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.06);
+    }
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+
+    .card {
+        padding: 35px 20px;
+    }
+
+    .titulo {
+        font-size: 30px;
+    }
+
+    #mensagem {
+        font-size: 18px;
+    }
+
+    .final {
+        font-size: 18px;
+    }
+
+    .final strong {
+        font-size: 21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="particles"></div>
+
+<div class="card">
+
+    <div class="titulo">Para você</div>
+
+    <div id="mensagem"></div>
+
+    <div class="final">
+        Para o Luan<br>
+        <strong>@gameplaydamarecaçacvcu</strong>
+    </div>
+
+</div>
+
+<script>
+
+/* PARTÍCULAS */
+
+const particles = document.querySelector(".particles");
+
+for (let i = 0; i < 100; i++) {
+
+    const particle = document.createElement("div");
+
+    particle.classList.add("particle");
+
+    particle.style.left =
+        Math.random() * 100 + "%";
+
+    particle.style.animationDuration =
+        (4 + Math.random() * 7) + "s";
+
+    particle.style.animationDelay =
+        Math.random() * 8 + "s";
+
+    particles.appendChild(particle);
+}
+
+/* MENSAGEM EXATA */
+
+const mensagem = `Mesmo você sendo um filho da puta
+que eu odeio pra caralho
+
+que se um é contra tu
+é três comigo FDP
+
+mas mesmo assim eu te amo morô
+
+Tamo junto sempre tio`;
+
+const elemento =
+    document.getElementById("mensagem");
+
+let i = 0;
+
+function escrever() {
+
+    if (i < mensagem.length) {
+
+        elemento.textContent +=
+            mensagem.charAt(i);
+
+        i++;
+
+        setTimeout(escrever, 55);
+    }
+}
+
+escrever();
+
+</script>
+
+</body>
+</html>
